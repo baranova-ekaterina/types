@@ -6,7 +6,7 @@ ORDER BY length_track DESC
 LIMIT 1;
 
 SELECT name_track, length_track FROM Tracks
-WHERE length_track >= 3.5;
+WHERE length_track >= 220;
 
 SELECT name_collection, release_year FROM Collections
 WHERE release_year >= 2018 AND release_year <= 2020;
