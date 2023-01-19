@@ -67,10 +67,14 @@ WHERE t.length_track = (SELECT min(length_track) FROM tracks)
 ORDER BY length_track DESC;
 
 --9
-SELECT a.name_album, count(t.name_track) FROM albums a 
+SELECT a.name_album, count(*) FROM albums a 
 JOIN tracks t ON t.album = a.id
-GROUP BY name_album 
-HAVING  count(name_track) = 1;
+GROUP BY a.name_album 
+HAVING  count(*) = (SELECT count(*) FROM albums a
+                   JOIN tracks t ON t.album = a.id
+                   GROUP BY a.name_album 
+                   ORDER BY count(*)
+                   LIMIT 1);
 
 
 
